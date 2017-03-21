@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>产品展示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!--  styles -->
+    <style>
+        html, body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .select-wrapper {
+            height: 50px;
+            line-height: 50px;
+            padding: 0 15px;
+            width: 94%;
+            margin: 10px auto 5px;
+        }
+
+        .select {
+            width: 50%;
+            font-size: 14px;
+            height: auto;
+            margin-top: 1px;
+            border: 0 !important;
+            background-color: #fff;
+            padding: 4px;
+            outline: none;
+        }
+
+        .contact {
+            width: 94%;
+            margin: 0 auto;
+        }
+
+        .contact > p {
+            line-height: 20px;
+        }
+
+        .list {
+            width: 94%;
+            margin: 0 auto 20px;
+        }
+
+        .list > .item {
+            background: white;
+            border: 8px solid white;
+            border-radius: 2px;
+            margin-top: 8px;
+        }
+
+        .list > .item > img {
+            width: 100%;
+        }
+
+        .item {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .content2 {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+            background: white;
+            padding-top: 20px;
+        }
+        .swiper-container {
+            width: 94%;
+            height: 50%;
+            /*position: fixed;*/
+            background: black;
+        }
+        .swiper-slide img{
+            width: 100%;
+            height: 100%;
+        }
+        .tags{
+            width: 94%;
+            margin: 10px auto;
+        }
+        .group{
+            border: 1px solid #808080;
+            display: inline;
+            float: left;
+            padding: 10px;
+            border-radius: 6px;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        /* animate */
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        @keyframes flipInY {
+            from {
+                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+                transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+                opacity: 0;
+            }
+
+            40% {
+                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+                transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+
+            60% {
+                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+                transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+                transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+            }
+
+            to {
+                -webkit-transform: perspective(400px);
+                transform: perspective(400px);
+            }
+        }
+
+        .flipInY {
+            -webkit-backface-visibility: visible !important;
+            backface-visibility: visible !important;
+            -webkit-animation-name: flipInY;
+            animation-name: flipInY;
+        }
+    </style>
+</head>
+<body>
+
+<!-- content1 -->
+<div class="content1">
+    <!--select-->
+    <section class="select-wrapper">
+        <b>产品分类：</b>
+        <select id="myselect" class="select" style="background-color: #e5e5e5; width: 60%">
+            <option value="1">汽车线束产品系列</option>
+            <option value="2">汽车塑料产品系列</option>
+        </select>
+    </section>
+    <section class="contact">
+        <p>公司名称：重庆科洛迪汽车零部件有限公司</p>
+        <p>联系电话：18716691346</p>
+    </section>
+    <section class="list">
+        <div class="item"><img src="images/1.jpg" with='100%'></div>
+        <div class="item"><img src="images/2.jpg" with='100%'></div>
+        <div class="item"><img src="images/3.jpg" with='100%'></div>
+        <div class="item"><img src="images/4.jpg" with='100%'></div>
+        <div class="item"><img src="images/5.jpg" with='100%'></div>
+        <div class="item"><img src="images/6.jpg" with='100%'></div>
+    </section>
+</div>
+
+<!-- content2 -->
+<div class="content2">
+    <div class="swiper-container animated flipInY">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/1.jpg" ></div>
+            <div class="swiper-slide"><img src="images/2.jpg" ></div>
+            <div class="swiper-slide"><img src="images/3.jpg" ></div>
+            <div class="swiper-slide"><img src="images/4.jpg" ></div>
+            <div class="swiper-slide"><img src="images/5.jpg" ></div>
+            <div class="swiper-slide"><img src="images/6.jpg" ></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="tags">
+        <div class="group">
+            <span>材料：</span>
+            <span>黑塑料</span>
+        </div>
+        <div class="group">
+            <span>材料：</span>
+            <span>黑塑料</span>
+        </div>
+        <div class="group">
+            <span>材料：</span>
+            <span>黑塑料</span>
+        </div>
+        <div class="group"><span>材料</span>:<span>黑塑料</span></div>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="js/swiper.min.js"></script>
+<script src="js/zepto.js"></script>
+<!-- Initialize Swiper -->
+<script>
+    /**
+     *  @todo 测试数据，后续删除
+     * */
+    var tagsData = [
+        [
+            {tit:'材料',con:'黑塑料1'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料2'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料3'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料4'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料5'}
+        ],
+    ];
+    (function (win, $, undefined) {
+        var items = $('.item');
+        var con2 = $('.content2');
+        var tags = $('.tags');
+        items.click(function () {
+            $('.content2').show();
+            new Swiper('.swiper-container',{
+                pagination : '.swiper-pagination',
+                onSlideChangeEnd: function(swiper){
+                    var tag = tagsData[swiper.activeIndex];
+                    console.log(swiper.activeIndex);
+                    var html = '';
+                    if(!tag){
+                        tags.html('');
+                        return;
+                    }
+                    tag.forEach(function(item){
+                        var group = '<div class="group"><span>' + item.tit + '</span>:<span>' + item.con + '</span></div>';
+                        html += group;
+                    });
+                    tags.html(html);
+                }
+            });
+        });
+        con2.click(function(){
+            con2.hide();
+        });
+    })(window, Zepto)
+</script>
+</body>
+</html>
