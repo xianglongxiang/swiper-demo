@@ -88,7 +88,7 @@
             padding-top: 20px;
         }
         .swiper-container {
-            width: 94%;
+            width: 100%;
             height: 50%;
             /*position: fixed;*/
             background: black;
@@ -107,55 +107,40 @@
             float: left;
             padding: 10px;
             border-radius: 6px;
-            margin-left: 15px;
+            margin-right: 15px;
             margin-top: 10px;
         }
 
         /* animate */
         .animated {
-            -webkit-animation-duration: 1s;
-            animation-duration: 1s;
+            -webkit-animation-duration: .4s;
+            animation-duration: .4s;
             -webkit-animation-fill-mode: both;
             animation-fill-mode: both;
         }
-        @keyframes flipInY {
+        @-webkit-keyframes fadeIn {
             from {
-                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
-                transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
-                -webkit-animation-timing-function: ease-in;
-                animation-timing-function: ease-in;
                 opacity: 0;
             }
 
-            40% {
-                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
-                transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
-                -webkit-animation-timing-function: ease-in;
-                animation-timing-function: ease-in;
-            }
-
-            60% {
-                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
-                transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
-                opacity: 1;
-            }
-
-            80% {
-                -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
-                transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
-            }
-
             to {
-                -webkit-transform: perspective(400px);
-                transform: perspective(400px);
+                opacity: 1;
             }
         }
 
-        .flipInY {
-            -webkit-backface-visibility: visible !important;
-            backface-visibility: visible !important;
-            -webkit-animation-name: flipInY;
-            animation-name: flipInY;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
         }
     </style>
 </head>
@@ -176,18 +161,18 @@
         <p>联系电话：18716691346</p>
     </section>
     <section class="list">
-        <div class="item"><img src="images/1.jpg" with='100%'></div>
-        <div class="item"><img src="images/2.jpg" with='100%'></div>
-        <div class="item"><img src="images/3.jpg" with='100%'></div>
-        <div class="item"><img src="images/4.jpg" with='100%'></div>
-        <div class="item"><img src="images/5.jpg" with='100%'></div>
-        <div class="item"><img src="images/6.jpg" with='100%'></div>
+        <div class="item" data-index="0"><img src="images/1.jpg" with='100%'></div>
+        <div class="item" data-index="1"><img src="images/2.jpg" with='100%'></div>
+        <div class="item" data-index="2"><img src="images/3.jpg" with='100%'></div>
+        <div class="item" data-index="3"><img src="images/4.jpg" with='100%'></div>
+        <div class="item" data-index="4"><img src="images/5.jpg" with='100%'></div>
+        <div class="item" data-index="5"><img src="images/6.jpg" with='100%'></div>
     </section>
 </div>
 
 <!-- content2 -->
 <div class="content2">
-    <div class="swiper-container animated flipInY">
+    <div class="swiper-container animated fadeIn">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="images/1.jpg" ></div>
             <div class="swiper-slide"><img src="images/2.jpg" ></div>
@@ -196,23 +181,8 @@
             <div class="swiper-slide"><img src="images/5.jpg" ></div>
             <div class="swiper-slide"><img src="images/6.jpg" ></div>
         </div>
-        <div class="swiper-pagination"></div>
     </div>
-    <div class="tags">
-        <div class="group">
-            <span>材料：</span>
-            <span>黑塑料</span>
-        </div>
-        <div class="group">
-            <span>材料：</span>
-            <span>黑塑料</span>
-        </div>
-        <div class="group">
-            <span>材料：</span>
-            <span>黑塑料</span>
-        </div>
-        <div class="group"><span>材料</span>:<span>黑塑料</span></div>
-    </div>
+    <div class="tags"></div>
 </div>
 
 <!-- Swiper JS -->
@@ -222,6 +192,7 @@
 <script>
     /**
      *  @todo 测试数据，后续删除
+     *
      * */
     var tagsData = [
         [
@@ -240,34 +211,55 @@
             {tit:'材料',con:'黑塑料5'}
         ],
     ];
+    /**＊＊＊＊＊    测试数据end  ＊＊＊＊＊*/
+
     (function (win, $, undefined) {
-        var items = $('.item');
-        var con2 = $('.content2');
+        var items = $('.item'),
+            con2 = $('.content2'),
+            index = 0;// 当前展示图片的下标
+
         var tags = $('.tags');
+        // 创建 swiper 对象
+        var mySwiper = null;
+
         items.click(function () {
-            $('.content2').show();
-            new Swiper('.swiper-container',{
-                pagination : '.swiper-pagination',
-                onSlideChangeEnd: function(swiper){
-                    var tag = tagsData[swiper.activeIndex];
-                    console.log(swiper.activeIndex);
-                    var html = '';
-                    if(!tag){
-                        tags.html('');
-                        return;
-                    }
-                    tag.forEach(function(item){
-                        var group = '<div class="group"><span>' + item.tit + '</span>:<span>' + item.con + '</span></div>';
-                        html += group;
-                    });
-                    tags.html(html);
-                }
-            });
+            con2.show();
+            index = $(this).attr('data-index');
+            var tag = tagsData[index];
+            if(!mySwiper){
+                mySwiper = createSwiper()
+
+            }
+            mySwiper.slideTo(index, 1000, true);
+            tags.html(createTag(tag));
         });
         con2.click(function(){
             con2.hide();
         });
-    })(window, Zepto)
+
+        var createSwiper = function(){
+           return new Swiper('.swiper-container',{
+                onSlideChangeEnd: function(swiper){
+                    var tag = tagsData[swiper.activeIndex];
+                    tags.html(createTag(tag));
+                }
+            });
+        }
+
+        //创建tag html
+        var createTag = function(tag){
+            var tagHtml = '';
+            if(!tag){
+                return tagHtml;
+            }
+            tag.forEach(function(item){
+                var group = '<div class="group"><span>' + item.tit + '</span>:<span>' + item.con + '</span></div>';
+                tagHtml += group;
+            });
+            return tagHtml;
+        }
+    })(window, Zepto);
+
 </script>
 </body>
 </html>
