@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>产品展示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!--  styles -->
+    <style>
+        html, body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: white;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            background: #c00712;
+        }
+
+
+        .select-wrapper {
+            height: 40px;
+            line-height: 30px;
+            padding: 0 15px;
+            background: white;
+        }
+
+        .select {
+            width: 50%;
+            font-size: 14px;
+            height: auto;
+            margin-top: 1px;
+            border: 0 !important;
+            background-color: #fff;
+            padding: 4px;
+            outline: none;
+        }
+
+        .contact {
+            margin: 0 auto;
+            background-color: white;
+            background-image: url('images/logo.jpg');
+            background-repeat: no-repeat;
+            -webkit-background-size:50px;
+            background-size:50px;
+            height: 50px;
+            line-height: 45px;
+            text-align: center;
+            padding-left: 30px;
+            font-size: 1rem;
+            background-position: 6px 18px;
+            padding-top: 10px;
+        }
+        .contact img{
+            width: 74px;
+            height: 44px;
+        }
+        .contact font{
+            line-height: 44px;
+        }
+        .contact > p {
+            line-height: 20px;
+        }
+
+        .list {
+            width: 94%;
+            margin: 0 auto 20px;
+        }
+
+        .list > .item {
+            background: white;
+            border: 3px solid white;
+            border-radius: 2px;
+            margin-top: 20px;
+        }
+
+        .list > .item > img {
+            width: 100%;
+        }
+
+        .item {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .content2 {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+            background: white;
+            padding-top: 20px;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 50%;
+            /*position: fixed;*/
+            background: black;
+        }
+        .swiper-slide img{
+            width: 100%;
+            height: 100%;
+        }
+        .tags{
+            width: 94%;
+            margin: 10px auto;
+        }
+        .group{
+            border: 1px solid #808080;
+            display: inline;
+            float: left;
+            padding: 10px;
+            border-radius: 6px;
+            margin-right: 15px;
+            margin-top: 10px;
+            background-color: #e5e5e5;
+        }
+
+        /* animate */
+        .animated {
+            -webkit-animation-duration: .4s;
+            animation-duration: .4s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+        }
+    </style>
+</head>
+<body>
+
+<!-- content1 -->
+<div class="content1">
+    <div class="contact">
+        重庆科洛迪汽车零部件有限公司
+    </div>
+    <!--select-->
+    <section class="select-wrapper">
+        <b>产品分类：</b>
+        <select id="myselect" class="select" style="background-color: #e5e5e5; width: 60%">
+            <option value="1">汽车线束产品系列</option>
+            <option value="2">汽车塑料产品系列</option>
+        </select>
+    </section>
+
+    <section class="list">
+        <div class="item" data-index="0"><img src="images/1.jpg" with='100%'></div>
+        <div class="item" data-index="1"><img src="images/2.jpg" with='100%'></div>
+        <div class="item" data-index="2"><img src="images/3.jpg" with='100%'></div>
+        <div class="item" data-index="3"><img src="images/4.jpg" with='100%'></div>
+        <div class="item" data-index="4"><img src="images/5.jpg" with='100%'></div>
+        <div class="item" data-index="5"><img src="images/6.jpg" with='100%'></div>
+    </section>
+</div>
+
+<!-- content2 -->
+<div class="content2" style="background-color: black;">
+    <div class="swiper-container animated fadeIn"  style="margin-top:20%;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/1.jpg" ></div>
+            <div class="swiper-slide"><img src="images/2.jpg" ></div>
+            <div class="swiper-slide"><img src="images/3.jpg" ></div>
+            <div class="swiper-slide"><img src="images/4.jpg" ></div>
+            <div class="swiper-slide"><img src="images/5.jpg" ></div>
+            <div class="swiper-slide"><img src="images/6.jpg" ></div>
+        </div>
+    </div>
+    <div class="tags"></div>
+</div>
+
+<!-- Swiper JS -->
+<script src="js/swiper.min.js"></script>
+<script src="js/zepto.js"></script>
+<!-- Initialize Swiper -->
+<script>
+    /**
+     *  @todo 测试数据，后续删除
+     *
+     * */
+    var tagsData = [
+        [
+            {tit:'材料',con:'黑塑料1'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料2'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料3'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料4'}
+        ],
+        [
+            {tit:'材料',con:'黑塑料5'}
+        ],
+    ];
+    /**＊＊＊＊＊    测试数据end  ＊＊＊＊＊*/
+
+    (function (win, $, undefined) {
+        var items = $('.item'),
+            con2 = $('.content2'),
+            index = 0;// 当前展示图片的下标
+
+        var tags = $('.tags');
+        // 创建 swiper 对象
+        var mySwiper = null;
+
+        items.click(function () {
+            con2.show();
+            index = $(this).attr('data-index');
+            var tag = tagsData[index];
+            if(!mySwiper){
+                mySwiper = createSwiper()
+
+            }
+            mySwiper.slideTo(index, 1000, true);
+            tags.html(createTag(tag));
+        });
+        con2.click(function(){
+            con2.hide();
+        });
+
+        var createSwiper = function(){
+            return new Swiper('.swiper-container',{
+                onSlideChangeEnd: function(swiper){
+                    var tag = tagsData[swiper.activeIndex];
+                    tags.html(createTag(tag));
+                }
+            });
+        }
+
+        //创建tag html
+        var createTag = function(tag){
+            var tagHtml = '';
+            if(!tag){
+                return tagHtml;
+            }
+            tag.forEach(function(item){
+                var group = '<div class="group"><span>' + item.tit + '</span> : <span>' + item.con + '</span></div>';
+                tagHtml += group;
+            });
+            return tagHtml;
+        }
+    })(window, Zepto);
+
+</script>
+</body>
+</html>
