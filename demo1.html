@@ -29,7 +29,7 @@
         .select-wrapper {
             height: 40px;
             line-height: 30px;
-            padding: 0 15px;
+            padding: 10px 15px 0px;
             background: white;
         }
 
@@ -166,9 +166,7 @@
 
 <!-- content1 -->
 <div class="content1">
-    <div class="contact">
-        重庆科洛迪汽车零部件有限公司
-    </div>
+    <img src="images/top.png" width="100%">
     <!--select-->
     <section class="select-wrapper">
         <b>产品分类：</b>
@@ -277,6 +275,21 @@
             return tagHtml;
         }
     })(window, Zepto);
+
+    (function(win, doc, undefined){
+        win.addEventListener('scroll',function(){
+            console.log(win.scrollY);
+            var select = document.querySelector('.select-wrapper');
+            if(win.scrollY > select.offsetTop){
+                select.style.position = 'fixed';
+                select.style.top = 0;
+            }else{
+                select.style.position = 'relative';
+            }
+
+        },false)
+
+    })(window,document)
 
 </script>
 </body>
